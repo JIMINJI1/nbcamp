@@ -4,13 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
-    int firstNumber;
-    int secondNumber;
-    char operator;
+
+    // 각 연산을 수행할 연산 클래스 인스턴스를 생성
+    private final AddOperation addOperation = new AddOperation();
+    private final SubstractOperation substractOperation = new SubstractOperation();
+    private final MultiplyOperation multiplyOperation = new MultiplyOperation();
+    private final DivideOperation divideOperation = new DivideOperation();
+
     // int result; => 컬렉션타입 필드
     private List<Integer> results = new ArrayList<Integer>();
 
-    //계산 결과 리스트 추가 메소드`
+    //계산 결과 리스트 추가 메소드
     public void addResult(int result){
         results.add(result);
     }
@@ -39,19 +43,19 @@ public class Calculator {
 
         switch (operator){
             case '+':
-                resultValue = firstNumber + secondNumber;
+                resultValue = addOperation.operate(firstNumber,secondNumber);
                 break;
             case '-':
-                resultValue =firstNumber - secondNumber;
+                resultValue =substractOperation.operate(firstNumber,secondNumber);
                 break;
             case '*':
-                resultValue = firstNumber * secondNumber;
+                resultValue = multiplyOperation.operate(firstNumber,secondNumber);
                 break;
             case '/':
                 if (secondNumber == 0) {
                     throw new Exception("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. 다시 입력 하세요.");
                 } else {
-                    resultValue = firstNumber / secondNumber;
+                    resultValue = divideOperation.operate(firstNumber,secondNumber);
                 }
                 break;
 
