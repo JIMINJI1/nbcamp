@@ -16,10 +16,12 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        // 콘솔 입력값 받기 Scanner 사용
+        // Scanner 객체 생성 (콘솔 입력값 받기)
         Scanner sc = new Scanner(System.in);
-        // Calculator 객체 생성
+        // Calculator 객체 생성 (계산)
         Calculator calculator = new Calculator();
+        // Paser 객체 생성 (입력값 유효성 검사)
+        Parser parser = new Parser();
 
         // 계산기 반복 while문
         while (true) {
@@ -30,17 +32,23 @@ public class App {
 
             // try~~ catch 예외처리 : 잘못된 값 입력 하면 에러 메세지로 알려줌
             try {
-            /* 입력값 받기 */
+            // 입력값 받기
             System.out.println("---------- 계산기 ----------");
 
             System.out.println("1. 첫 번째 숫자를 입력하세요.");
-            firstNum = sc.nextInt();
+            String firstInput = sc.nextLine();
+            //입렵값 문자로 받아서 검사한 뒤 숫자로 반환, 잘못된 입력값이 때 오류 메시지 반환
+            firstNum = parser.parseNumber(firstInput);
 
             System.out.println("2. 사칙연산 기호를 입력하세요.(+ , - , * , / )");
-            operator = sc.next().charAt(0);
+            String operatorInput = sc.nextLine();
+            // 입력값 문자로 받아 검사한 뒤 반환
+            operator = parser.parseOperator(operatorInput);
 
             System.out.println("3. 두 번째 숫자를 입력하세요.");
-            secondNum = sc.nextInt();
+            String secondInput = sc.nextLine();
+            //입렵값 문자로 받아서 검사한 뒤 숫자로 반환, 잘못된 입력값이 때 오류 메시지 반환
+            secondNum = parser.parseNumber(secondInput);
 
             // 계산 수행
             calculator.calculate(firstNum, operator, secondNum);
@@ -59,8 +67,7 @@ public class App {
             }
 
             // 계산 계속 진행 여부 처리
-            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료 , exit 이외에 아무거나 입력 시 새로운 계산 진행) ");
-            sc.nextLine(); // 개행 문자 처리
+            System.out.println("더 계산하시겠습니까? (exit 입력 시 종료, exit 이외에 아무거나 입력 시 새로운 계산 진행) ");
             String exitContinue = sc.nextLine(); // 사용자 입력 받기
 
 

@@ -6,10 +6,10 @@ import java.util.List;
 public class Calculator {
 
     // 각 연산을 수행할 연산 클래스 인스턴스를 생성
-    private final AddOperation addOperation = new AddOperation();
-    private final SubstractOperation substractOperation = new SubstractOperation();
-    private final MultiplyOperation multiplyOperation = new MultiplyOperation();
-    private final DivideOperation divideOperation = new DivideOperation();
+    private final AbstractOperation addOperation = new AddOperation();
+    private final AbstractOperation substractOperation = new SubstractOperation();
+    private final AbstractOperation multiplyOperation = new MultiplyOperation();
+    private final AbstractOperation divideOperation = new DivideOperation();
 
     // int result; => 컬렉션타입 필드
     private List<Integer> results = new ArrayList<Integer>();
@@ -29,7 +29,6 @@ public class Calculator {
         results.remove(0);
     }
 
-
     //계산 수정하는 Setter 메소드
     public List<Integer> setResults(){
         return results;
@@ -38,38 +37,40 @@ public class Calculator {
     // 계산 수행 메소드
     // try~~ catch로 예외처리하기
     public int calculate(int firstNumber,char operator, int secondNumber) throws Exception {
-        // 계산 결과 저장할 로컬 변수
-        int resultValue;
-
+        //연산을 수행할 연산자 객체를 저장하기 위한 변수
+        AbstractOperation operation;
+        
+        // 입력받은 연산 기호에 따라 처리
         switch (operator){
             case '+':
-                resultValue = addOperation.operate(firstNumber,secondNumber);
+                operation = addOperation;
                 break;
             case '-':
-                resultValue =substractOperation.operate(firstNumber,secondNumber);
+                operation = substractOperation;
                 break;
             case '*':
-                resultValue = multiplyOperation.operate(firstNumber,secondNumber);
+                operation = multiplyOperation;
                 break;
             case '/':
                 if (secondNumber == 0) {
+                    // 두번째 숫자 0 예외 처리
                     throw new Exception("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다. 다시 입력 하세요.");
                 } else {
-                    resultValue = divideOperation.operate(firstNumber,secondNumber);
+                    operation = divideOperation;
                 }
                 break;
-
+            // 기본값 
             default:
                 throw new Exception("잘못된 연산자입니다. (+, -, *, / 중 하나를 사용하세요.)") ;
 
         }
 
+        // 연산 클래스를 통해 결과 계산
+        int resultValue = operation.operate(firstNumber, secondNumber);
         // 계산 결과 리스트에 추가
         addResult(resultValue);
         // 계산 결과 반환
         return resultValue;
     }
-
-
 
 }
