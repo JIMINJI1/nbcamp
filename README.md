@@ -35,7 +35,7 @@ CalculatorProject
  ┃ ┃ ┃ ┣ App.java
  ┃ ┃ ┃ ┣ BadInputException.java
  ┃ ┃ ┃ ┣ Calculator.java
- ┃ ┃ ┃ ┣ Parser.java
+ ┃ ┃ ┃ ┗ Parser.java
  ┣ .gitignore
  ┗ CalculatorProject.iml
 ```
