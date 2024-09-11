@@ -55,12 +55,12 @@ public class App {
 
             // 계산 결과 출력
             List<Integer> results = calculator.getResults();
-            System.out.println("계산 결과값 " + firstNum + operator + secondNum + "=" +  results.get(0));
+            System.out.println("계산 결과: " + firstNum + operator + secondNum + "=" +  results.get(0));
 
             // 계산 결과 값 삭제
             calculator.removeResult();
 
-
+            // 예외처리
             } catch(Exception e){
                 System.out.println(e.getMessage());
                 continue;
