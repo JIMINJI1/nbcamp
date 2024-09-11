@@ -39,5 +39,3 @@ CalculatorProject
  ┣ .gitignore
  ┗ CalculatorProject.iml
 ```
-
- ┗ CalculatorProject.iml
