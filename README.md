@@ -38,6 +38,3 @@ CalculatorProject
  ┃ ┃ ┃ ┗ Parser.java
  ┣ .gitignore
  ┗ CalculatorProject.iml
-```
-
- ┗ CalculatorProject.iml
