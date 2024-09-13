@@ -27,23 +27,23 @@ public class Calculator {
         results.remove(0);
     }
 
-    /* 사칙연산 메서드 */
-    // 덧셈 메서드
+    /* 사칙연산 메소드 */
+    // 덧셈 메소드
     private int add(int firstNumber, int secondNumber) {
         return firstNumber + secondNumber;
     }
 
-    // 뺄셈 메서드
+    // 뺄셈 메소드
     private int subtract(int firstNumber, int secondNumber) {
         return firstNumber - secondNumber;
     }
 
-    // 곱셈 메서드
+    // 곱셈 메소드
     private int multiply(int firstNumber, int secondNumber) {
         return firstNumber * secondNumber;
     }
 
-    // 나눗셈 메서드
+    // 나눗셈 메소드
     private int divide(int firstNumber, int secondNumber) {
         return firstNumber / secondNumber;
     }
