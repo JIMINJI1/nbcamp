@@ -14,7 +14,7 @@ public class App {
         // 콘솔 입력값 받기 Scanner 사용
         Scanner sc = new Scanner(System.in);
 
-        // 계산기 반복 while문
+        // 계산기 반복 While문
         while (true) {
             // 변수
             int firstNum = 0; //첫 번째 수
