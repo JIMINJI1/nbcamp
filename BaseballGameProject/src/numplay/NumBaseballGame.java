@@ -28,6 +28,7 @@ public class NumBaseballGame {
             // 입력값이랑 정답 각 자리 숫자 비교
             for (int i = 0; i < 3; i++) {
                 // 같은 자리에 같은 숫자 있으면 스트라이크 수 증가
+                // charAt(i) : 문자열에서 i번째 문자 가져옴
                 if (input.charAt(i) == randomNum.charAt(i)) {
                     cnt++;
                 }
@@ -43,6 +44,7 @@ public class NumBaseballGame {
             for (int i = 0; i < 3; i++) {
                 char inputChar = input.charAt(i);
                 // 같은 자리에서 일치하지 않으면서 정답에 포함된 경우 볼 수 증가
+                // 비교대상.indexOf(찾고자하는문자) : 있으면 인덱스 반환, 없으면 -1 반환
                 if (inputChar != randomNum.charAt(i) && randomNum.indexOf(inputChar) != -1) {
                     cnt++;
                 }
