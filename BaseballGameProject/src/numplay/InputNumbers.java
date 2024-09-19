@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class InputNumbers {
+
     // 중복 숫자 확인 메서드
     private boolean hasDuplicateDigits(String numberStr) {
         // 중복 숫자 확인하기 위해 Set 선언 및 생성
@@ -21,33 +22,61 @@ public class InputNumbers {
         return false;
     }
 
-    // 사용자 값 입력 받고 유효성 검사
-    public String inputNumbers() {
-        //Scanner 선언 및 생성
+    // 유효한 숫자 입력을 받는 메서드
+    public String getValidInput() {
         Scanner scanner = new Scanner(System.in);
-        // input 선언 및 초기화
-        String input = null;
-        System.out.println("게임을 시작합니다. 3자리 숫자를 입력해 주세요. 동일한 숫자 사용 불가능");
+        String input;
 
-        while(true){
-            // Scanner로 입력값 받음
-            input =scanner.nextLine();
 
-            //입력값 3자리 숫자인지 확인 ->  "\\d": 숫자인지   "\\d{3}" : 세자리 숫자인지
-            if(!input.matches("\\d{3}")){
+        System.out.println("숫자를 입력하세요.");
+
+        while (true) {
+            input = scanner.nextLine();
+
+            // 입력값이 3자리 숫자인지 확인
+            if (!input.matches("\\d{3}")) {
                 System.out.println("올바르지 않은 입력값입니다. 3자리 숫자를 입력하세요.");
-                continue; //유효하지 않으면 반복문 처음으로
+                continue; // 유효하지 않으면 반복문 처음으로
             }
 
             // 입력값 숫자 중복 확인
-            if(hasDuplicateDigits(input)){
+            if (hasDuplicateDigits(input)) {
                 System.out.println("올바르지 않은 입력값입니다. 동일한 숫자 사용 불가능 합니다.");
-                continue; //유요하지 않으면 반복문 처음으로
+                continue; // 유효하지 않으면 반복문 처음으로
             }
-            // 유요한 입력값 반환 하고 반복문 종료
-            break;
+            // 유효한 입력값 반환
+            return input;
+        }
     }
-        //input 반환
-        return input;
+
+    // 사용자 옵션 입력 및 처리 메서드
+    public void inputNumbers() {
+        Scanner scanner = new Scanner(System.in);
+        String option;
+
+        while (true) {
+            System.out.println("----- 환영합니다! 원하시는 번호를 입력해 주세요! -----");
+            System.out.println(" 1.게임시작       2.게임 기록 보기       3.게임 종료 ");
+
+            // 사용자 옵션 입력 받기
+            option = scanner.nextLine();
+
+            if (option.equals("1")) {
+                System.out.println("<게임을 시작합니다>");
+                // 게임 시작
+                NumBaseballGame numBaseballGame = new NumBaseballGame();
+                numBaseballGame.gameLogic();
+                continue;
+            } else if (option.equals("2")) {
+                System.out.println("게임 기록 보기 기능 Lv3에서 구현");
+                // 게임 기록 보기 기능 구현 필요
+            } else if (option.equals("3")) {
+                System.out.println("게임을 종료합니다.");
+                scanner.close();
+                System.exit(0);
+            } else {
+                System.out.println("올바른 옵션을 선택하세요.");
+            }
+        }
     }
 }

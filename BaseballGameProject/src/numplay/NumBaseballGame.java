@@ -50,7 +50,7 @@ public class NumBaseballGame {
         public void gameLogic(){
             while(true){
             // 사용자 입력값
-            String input = inputNumbers.inputNumbers();
+            String input = inputNumbers.getValidInput();
             // 스트라이크,볼,아웃 계산
             int strike = cntStrike(input);
             int ball = cntBall(input);
