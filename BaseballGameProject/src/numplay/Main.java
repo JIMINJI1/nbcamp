@@ -9,7 +9,7 @@ public class Main {
         InputNumbers inputNumbers = new InputNumbers(numBaseballGame);
 
         // 사용자 옵션 입력 (게임 시작, 기록 보기, 종료)
-        inputNumbers.inputNumbers();
+        inputNumbers.getUserInput();
     }
 }
 

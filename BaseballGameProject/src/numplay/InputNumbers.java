@@ -59,7 +59,7 @@ public class InputNumbers {
     }
 
     // 사용자 옵션 입력 및 처리 메서드
-    public void inputNumbers() {
+    public void getUserInput() {
         Scanner scanner = new Scanner(System.in);
         String option;
         boolean exit = false;
