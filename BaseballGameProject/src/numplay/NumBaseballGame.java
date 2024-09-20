@@ -6,14 +6,12 @@ public class NumBaseballGame {
 
         // 랜덤숫자 객체 생성
         private RandomNumbers randomNumbers = new RandomNumbers();
-        // 랜덤숫자  생성 후 randomNum 담음
-        private String randomNum=randomNumbers.createRandomNumber();
-        //사용자입력값 객체 생성
-        private InputNumbers inputNumbers = new InputNumbers();
+        // 랜덤숫자 저장할 변수
+        private String randomNum;
 
         //게임 기록
-        private List<int[]> gameRecords = new ArrayList<>();
-        private static int gameCnt =0; // 몇 번째 게임
+        private List<int[]> gameRecords = new ArrayList<>(); //최종 게임 기록 저장하는 리스트
+        private static int gameCnt =0; // 몇 번째 게임인지 저장하는 변수
 
 
         // 스트라이크 메서드
@@ -47,25 +45,29 @@ public class NumBaseballGame {
         }
 
         // 게임기록 메서드
-        public void showGameRecords() {
-            System.out.println("<게임 기록 보기>");
-            for (int i = 0; i < gameRecords.size(); i++) {
-                int gameRound = gameRecords.get(i)[0]; // i번째 게임 번호
-                int tryCnt = gameRecords.get(i)[1]; // i번째 게임 시도 횟수
-                System.out.println(gameRound + "번째 게임 : " + tryCnt + "회 시도");
+        public void getGameRecords() {
+            if(gameRecords.isEmpty()) {
+                System.out.println("게임 기록이 없습니다.");
+            } else{
+                System.out.println("<게임 기록 보기>");
+                for (int i = 0; i < gameRecords.size(); i++) {
+                    int gameRound = gameRecords.get(i)[0]; // i번째 게임 번호
+                    int tryCnt = gameRecords.get(i)[1]; // i번째 게임 시도 횟수
+                    System.out.println(gameRound + "번째 게임 : " + tryCnt + "회 시도");
+                }
             }
         }
 
 
-
         // 게임로직 메서드
-        public void gameLogic(){
+        public void gameLogic(String input){
             gameCnt++; // 새로운 게임 시작 시 게임 카운트 증가
             int tryCnt =0; // 시도 횟수 초기화
 
+            // 랜덤 숫자 생성
+            randomNum = randomNumbers.createRandomNumber();
+
             while(true){
-            // 사용자 입력값
-            String input = inputNumbers.getValidInput();
             tryCnt++; // 입력 받을 때마다 시도 횟수 증가
 
             // 스트라이크,볼,아웃 계산
@@ -77,13 +79,18 @@ public class NumBaseballGame {
             if (strike == 3) {
                 System.out.println("3 스트라이크!!");
                 System.out.println("정답입니다! 총 "+tryCnt+"번 시도했습니다.");
+                // 게임기록 리스트에 저장
                 gameRecords.add(new int[]{gameCnt,tryCnt});
                 break; // 반복문 종료
 
             } else {
                 System.out.println(strike + " 스트라이크 " + ball + " 볼 " + out + " 아웃");
-                    }
             }
+                // 새로운 입력값을 받아서 계속 진행
+                input = new InputNumbers(this).getValidInput();
+
+            }
+
 
         }
 }
