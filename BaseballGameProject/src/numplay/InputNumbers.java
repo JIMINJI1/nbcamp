@@ -53,10 +53,11 @@ public class InputNumbers {
     public void inputNumbers() {
         Scanner scanner = new Scanner(System.in);
         String option;
+        boolean exit = false;
 
-        while (true) {
+        while (!exit) {
             System.out.println("----- 환영합니다! 원하시는 번호를 입력해 주세요! -----");
-            System.out.println(" 1.게임시작       2.게임 기록 보기       3.게임 종료 ");
+            System.out.println(" 1.게임시작       2.게임 기록 보기       3.게임종료 ");
 
             // 사용자 옵션 입력 받기
             option = scanner.nextLine();
@@ -72,11 +73,11 @@ public class InputNumbers {
                 // 게임 기록 보기 기능 구현 필요
             } else if (option.equals("3")) {
                 System.out.println("게임을 종료합니다.");
-                scanner.close();
-                System.exit(0);
+                exit = true; // 루프종료
             } else {
                 System.out.println("올바른 옵션을 선택하세요.");
             }
         }
+        scanner.close();
     }
 }
