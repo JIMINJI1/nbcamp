@@ -4,18 +4,14 @@ import java.util.*;
 
 public class NumBaseballGame {
 
-        // 랜덤숫자 객체 생성
-        private RandomNumbers randomNumbers = new RandomNumbers();
-        // 랜덤숫자 저장할 변수
-        private String randomNum;
 
         //게임 기록
         private List<int[]> gameRecords = new ArrayList<>(); //최종 게임 기록 저장하는 리스트
         private static int gameCnt =0; // 몇 번째 게임인지 저장하는 변수
-
+        private static int tryCnt=0;
 
         // 스트라이크 메서드
-        private int cntStrike(String input) {
+        private int cntStrike(String input, String randomNum) {
             int cnt = 0;
             // 입력값이랑 정답 각 자리 숫자 비교
             for (int i = 0; i < 3; i++) {
@@ -30,7 +26,7 @@ public class NumBaseballGame {
 
 
         // 볼 메서드
-        private int cntBall(String input) {
+        private int cntBall(String input, String randomNum) {
             int cnt = 0;
             // 입력값 정답 각 자리 숫자 비교
             for (int i = 0; i < 3; i++) {
@@ -58,39 +54,36 @@ public class NumBaseballGame {
             }
         }
 
+    // 새로운 게임 초기화 메서드
+    public void incrementGameCount() {
+        // 새로운 게임 시작 시 게임 카운트 증가
+        gameCnt++;
+        // 새로운 게임 시작 시 시도 횟수 초기화
+        tryCnt=0;
+    }
 
-        // 게임로직 메서드
-        public void gameLogic(String input){
-            gameCnt++; // 새로운 게임 시작 시 게임 카운트 증가
-            int tryCnt =0; // 시도 횟수 초기화
 
-            // 랜덤 숫자 생성
-            randomNum = randomNumbers.createRandomNumber();
+    // 게임로직 메서드
+        public Object gameLogic(String input, String randomNum){
+
+            tryCnt++;// 시도 횟수 카운트 증가
 
             while(true){
-            tryCnt++; // 입력 받을 때마다 시도 횟수 증가
 
-            // 스트라이크,볼,아웃 계산
-            int strike = cntStrike(input);
-            int ball = cntBall(input);
-            int out = 3 - strike - ball; // 총 자리수 3에서 스트라이크와 볼 제외 한 값
+                // 스트라이크,볼,아웃 계산
+                int strike = cntStrike(input,randomNum);
+                int ball = cntBall(input,randomNum);
+                int out = 3 - strike - ball; // 총 자리수 3에서 스트라이크와 볼 제외 한 값
 
-            // 결과 출력
-            if (strike == 3) {
-                System.out.println("3 스트라이크!!");
-                System.out.println("정답입니다! 총 "+tryCnt+"번 시도했습니다.");
-                // 게임기록 리스트에 저장
-                gameRecords.add(new int[]{gameCnt,tryCnt});
-                break; // 반복문 종료
+                // 결과 반환(스트라이크,볼,아웃)
+                if (strike == 3) {
+                    // 게임기록 리스트에 저장
+                    gameRecords.add(new int[]{gameCnt,tryCnt});
+                    return tryCnt;
 
-            } else {
-                System.out.println(strike + " 스트라이크 " + ball + " 볼 " + out + " 아웃");
+                } else {
+                    return new int[]{strike, ball, out};
+                }
             }
-                // 새로운 입력값을 받아서 계속 진행
-                input = new InputNumbers(this).getValidInput();
-
-            }
-
-
         }
 }

@@ -6,16 +6,6 @@ import java.util.Set;
 
 public class InputNumbers {
 
-    // NumBaseballGame 객체 참조
-    private NumBaseballGame numBaseballGame;
-
-
-    // 생성자를 통해 NumBaseballGame 객체를 전달받음
-    public InputNumbers(NumBaseballGame numBaseballGame) {
-        // 전달 받은 객체 필드에 저장
-        this.numBaseballGame = numBaseballGame;
-    }
-
     // 중복 숫자 확인 메서드
     private boolean hasDuplicateDigits(String numberStr) {
         // 중복 숫자 확인하기 위해 Set 선언 및 생성
@@ -59,37 +49,16 @@ public class InputNumbers {
     }
 
     // 사용자 옵션 입력 및 처리 메서드
-    public void getUserInput() {
+    public String getUserInput() {
         Scanner scanner = new Scanner(System.in);
         String option;
-        boolean exit = false;
 
-        while (!exit) {
-            System.out.println("----- 환영합니다! 원하시는 번호를 입력해 주세요! -----");
-            System.out.println(" 1.게임시작       2.게임 기록 보기       3.게임종료 ");
+        System.out.println("----- 환영합니다! 원하시는 번호를 입력해 주세요! -----");
+        System.out.println(" 1.게임시작       2.게임 기록 보기       3.게임종료 ");
 
-            // 사용자 옵션 입력 받기
-            option = scanner.nextLine();
+        // 사용자 옵션 입력 받기
+        option = scanner.nextLine();
 
-            if (option.equals("1")) {
-                // 게임 시작
-                System.out.println("<게임을 시작합니다>");
-                // 유효한 입력값을 NumBaseballGame에 전달
-                String validInput = getValidInput();
-                // numBaseballGame.gameLogic 호출
-                numBaseballGame.gameLogic(validInput);
-
-            } else if (option.equals("2")) {
-                // numBaseballGame.getGameRecords 메서드로 기록 가져오기
-                numBaseballGame.getGameRecords();
-
-            } else if (option.equals("3")) {
-                System.out.println("게임을 종료합니다.");
-                exit = true; // 루프종료
-            } else {
-                System.out.println("올바른 옵션을 선택하세요.");
-            }
-        }
-        scanner.close();
-    }
+        return  option;
+ }
 }
