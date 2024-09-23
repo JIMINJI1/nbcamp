@@ -27,6 +27,7 @@ BaseballGameProject
  ┣ out
  ┣ src
  ┃ ┗ numplay
+ ┃ ┃ ┣ GameManager.java
  ┃ ┃ ┣ InputNumbers.java
  ┃ ┃ ┣ Main.java
  ┃ ┃ ┣ NumBaseballGame.java
