@@ -24,13 +24,7 @@
 ```
 BaseballGameProject
  ┣ .idea
- ┃ ┣ .gitignore
- ┃ ┣ material_theme_project_new.xml
- ┃ ┣ misc.xml
- ┃ ┣ modules.xml
- ┃ ┣ uiDesigner.xml
- ┃ ┣ vcs.xml
- ┃ ┗ workspace.xml
+ ┣ out
  ┣ src
  ┃ ┗ numplay
  ┃ ┃ ┣ InputNumbers.java
@@ -72,12 +66,7 @@ BaseballGameProject
 ```
 CalculatorProject
  ┣ .idea
- ┃ ┣ .gitignore
- ┃ ┣ material_theme_project_new.xml
- ┃ ┣ misc.xml
- ┃ ┣ modules.xml
- ┃ ┣ uiDesigner.xml
- ┃ ┗ vcs.xml
+ ┣ out
  ┣ src
  ┃ ┗ calculator
  ┃ ┃ ┣ Lv1
